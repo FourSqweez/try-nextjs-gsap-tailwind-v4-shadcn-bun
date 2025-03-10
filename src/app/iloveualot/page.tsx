@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Page() {
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState(10);
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
