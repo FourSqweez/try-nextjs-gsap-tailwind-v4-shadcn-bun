@@ -42,7 +42,7 @@ export default function Page() {
             count === 0 ? "scale-110 text-red-500" : "scale-100 text-red-500"
           }`}
         >
-          {count}
+          {isActive && count}
         </h1>
       ) : (
         <Image
