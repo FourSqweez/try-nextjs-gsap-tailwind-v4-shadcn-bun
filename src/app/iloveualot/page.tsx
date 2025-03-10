@@ -49,7 +49,7 @@ export default function Page() {
           src="/d8_iloveualot.png"
           alt="iloveualot"
           className={cn(
-            `mx-10 hidden h-[450px] w-[340px] border-2 border-red-500 object-fill px-10 sm:h-[600px] sm:w-[400px]`,
+            `mx-10 hidden h-[420px] w-[330px] border-2 border-red-500 object-fill px-10 sm:h-[520px] sm:w-[400px]`,
             {
               block: count === 0,
             },
