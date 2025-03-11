@@ -10,12 +10,12 @@ export default function FredImg() {
   const fredRef = useRef<null>(null);
 
   useGSAP(() => {
-    gsap.to(".green", { duration: 2, x: 600, repeat: -1, yoyo: true });
-    gsap.to(".pink", { duration: 2, x: 600, delay: 2, repeat: -1, yoyo: true });
+    gsap.to(".green", { duration: 3, x: 600, ease: "bounce" });
+    gsap.to(".pink", { duration: 3, x: 600, ease: "back(6)" });
   }, {});
 
   return (
-    <div ref={fredRef} className="h-fit">
+    <div ref={fredRef} className="mt-10 h-fit">
       <img
         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32887/fred.svg"
         alt=""
