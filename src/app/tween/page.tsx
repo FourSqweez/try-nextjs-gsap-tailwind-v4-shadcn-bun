@@ -1,10 +1,10 @@
-import FredImg from "@/components/elements/fred-img";
+import BasicTween from "@/components/lessons/tween/basic-tween";
 
 export default function Page() {
   console.log("render in server");
   return (
     <>
-      <FredImg />
+      <BasicTween />
     </>
   );
 }
