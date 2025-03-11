@@ -7,11 +7,10 @@ export default function FredImg() {
   const fredRef = useRef<null>(null);
 
   useGSAP(() => {
-    gsap.to(fredRef.current, {
+    gsap.from(fredRef.current, {
       x: 400,
       y: 200,
       scale: 3,
-      rotate: 360,
       duration: 3,
     });
 
