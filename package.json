@@ -9,6 +9,7 @@
     "lint": "bun --bun next lint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.2",
     "@tailwindcss/postcss": "^4.0.12",
     "class-variance-authority": "^0.7.1",
