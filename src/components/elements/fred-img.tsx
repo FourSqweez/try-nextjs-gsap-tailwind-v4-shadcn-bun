@@ -12,8 +12,8 @@ export default function FredImg() {
       gsap.to("img", {
         y: -100,
         stagger: {
-          each: 0.2,
-          from: "random",
+          amount: 0.2,
+          from: "edges",
         },
       });
     },
