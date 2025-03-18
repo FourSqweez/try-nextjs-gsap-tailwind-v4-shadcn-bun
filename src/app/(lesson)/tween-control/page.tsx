@@ -1,10 +1,11 @@
 "use client";
+
 import { ControlButton } from "@/components/elements/control-button";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useCallback } from "react";
 
-const TweenControl: React.FC = () => {
+const TweenControlPage = () => {
   const tweenRef = React.useRef<GSAPTween | null>(null);
 
   useGSAP(
@@ -26,7 +27,7 @@ const TweenControl: React.FC = () => {
   const restart = useCallback(() => tweenRef.current?.restart(), []);
 
   return (
-    <div className="bg-[#0a5b90] p-5 text-center font-sans">
+    <div className="h-screen bg-[#0a5b90] p-5 text-center font-sans">
       <img
         className="green mx-auto block"
         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32887/fred.svg"
@@ -43,4 +44,4 @@ const TweenControl: React.FC = () => {
   );
 };
 
-export default TweenControl;
+export default TweenControlPage;
