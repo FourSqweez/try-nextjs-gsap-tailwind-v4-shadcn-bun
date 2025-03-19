@@ -9,6 +9,10 @@ const routes = [
     name: "Basic Tween",
     href: "/basic-tween",
   },
+  {
+    name: "From Glitch Stop",
+    href: "/from-glitch-stop",
+  },
 ];
 export default function Navbar() {
   return (
