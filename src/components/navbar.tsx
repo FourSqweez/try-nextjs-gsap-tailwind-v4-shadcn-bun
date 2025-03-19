@@ -17,6 +17,10 @@ const routes = [
     name: "Transform Origin",
     href: "/transform-origin",
   },
+  {
+    name: "Basic Timeline",
+    href: "/basic-timeline",
+  },
 ];
 export default function Navbar() {
   return (
