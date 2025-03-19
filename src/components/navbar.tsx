@@ -13,6 +13,10 @@ const routes = [
     name: "From Glitch Stop",
     href: "/from-glitch-stop",
   },
+  {
+    name: "Transform Origin",
+    href: "/transform-origin",
+  },
 ];
 export default function Navbar() {
   return (
