@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const routes = [
   {
-    name: "Tween",
+    name: "Tween Control",
     href: "/tween-control",
   },
   {
