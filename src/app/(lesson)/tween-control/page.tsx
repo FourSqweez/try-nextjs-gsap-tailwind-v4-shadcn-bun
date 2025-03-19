@@ -7,10 +7,10 @@ import React, { useCallback } from "react";
 
 const TweenControlPage = () => {
   const tweenRef = React.useRef<GSAPTween | null>(null);
-
+  const imageRef = React.useRef<HTMLImageElement>(null);
   useGSAP(
     () => {
-      tweenRef.current = gsap.to(".green", {
+      tweenRef.current = gsap.to(imageRef.current, {
         duration: 3,
         x: 600,
         ease: "linear",
@@ -29,7 +29,8 @@ const TweenControlPage = () => {
   return (
     <div className="h-screen bg-[#0a5b90] p-5 text-center font-sans">
       <img
-        className="green mx-auto block"
+        ref={imageRef}
+        className="green mx-auto block will-change-transform"
         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32887/fred.svg"
         alt="Fred"
         width="150"
