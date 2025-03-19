@@ -1,6 +1,7 @@
 "use client";
 
 import { ControlButton } from "@/components/elements/control-button";
+import FredImage from "@/components/elements/fred-img";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useCallback } from "react";
@@ -27,14 +28,10 @@ const TweenControlPage = () => {
   const restart = useCallback(() => tweenRef.current?.restart(), []);
 
   return (
-    <div className="h-screen bg-[#0a5b90] p-5 text-center font-sans">
-      <img
-        ref={imageRef}
-        className="green mx-auto block will-change-transform"
-        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32887/fred.svg"
-        alt="Fred"
-        width="150"
-      />
+    <div className="flex h-screen w-full flex-col items-center justify-center bg-[#0a5b90] p-5 text-center font-sans">
+      <div className="relative h-[120px] w-[150px]">
+        <FredImage ref={imageRef} />
+      </div>
       <div id="nav" className="mt-5 space-x-2">
         <ControlButton action="play" onClick={play} />
         <ControlButton action="pause" onClick={pause} />
