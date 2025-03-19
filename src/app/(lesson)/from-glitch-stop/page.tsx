@@ -5,15 +5,14 @@ import { useRef } from "react";
 
 const FromGlitchStopPage = () => {
   const bgRef = useRef<HTMLDivElement>(null);
-  const tween = gsap.fromTo(
-    bgRef.current,
-    { scale: 0, duration: 1 },
-    { scale: 1, ease: "circ.out" },
-  );
 
   const handleMouseEnter = () => {
     if (bgRef.current) {
-      tween.restart();
+      gsap.fromTo(
+        bgRef.current,
+        { scale: 0, duration: 1 },
+        { scale: 1, ease: "circ.out" },
+      );
     }
   };
 
