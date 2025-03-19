@@ -1,19 +1,12 @@
 "use client";
 
-import FredImage, { type FredColor } from "@/components/elements/fred-img";
+import FredImage, { fredColors } from "@/components/elements/fred-img";
+import MarBg from "@/components/mar-bg";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
 gsap.registerPlugin(useGSAP);
-const fredColors: (FredColor | undefined)[] = [
-  undefined,
-  "purple",
-  "blue",
-  "pink",
-  "orange",
-  "red",
-];
 
 export default function BasicTween() {
   const fredsContainer = useRef<null>(null);
@@ -32,10 +25,8 @@ export default function BasicTween() {
   );
 
   return (
-    <div
-      id="demo"
-      className="relative flex h-screen w-full justify-center bg-[url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/32887/space-background.png')] bg-cover bg-center"
-    >
+    <div id="demo" className="relative flex h-screen w-full justify-center">
+      <MarBg />
       <div ref={fredsContainer} className="absolute bottom-30 flex gap-x-2">
         {fredColors.map((color) => (
           <div

@@ -27,3 +27,12 @@ const FredImage = forwardRef<HTMLImageElement, FredImageProps>(
 FredImage.displayName = "FredImage";
 
 export default FredImage;
+
+export const fredColors: (FredColor | undefined)[] = [
+  undefined,
+  "purple",
+  "blue",
+  "pink",
+  "orange",
+  "red",
+];
