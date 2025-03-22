@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Kanit } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,6 +11,13 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const kanit = Kanit({
+  weight: ["200", "400", "500"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-kanit",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${kanit.variable} antialiased`}
       >
         <div className="bg-kitty-darker">
           <Navbar />

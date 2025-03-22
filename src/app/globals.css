@@ -127,6 +127,8 @@
   --color-kitty-blue-light: #9dcaf8;
   --color-kitty-pink: #f8b1c8;
   --color-kitty-pink-hot: #f692b2;
+
+  --font-kanit: var(--font-kanit);
 }
 
 @layer base {
