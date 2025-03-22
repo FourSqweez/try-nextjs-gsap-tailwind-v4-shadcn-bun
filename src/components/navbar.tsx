@@ -29,6 +29,14 @@ const routes = [
     name: "Creative Process",
     href: "/creative-process",
   },
+  {
+    name: "Text Typing",
+    href: "/text-typing",
+  },
+  {
+    name: "Split Text",
+    href: "/split-text",
+  },
 ];
 export default function Navbar() {
   return (

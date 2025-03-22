@@ -38,7 +38,7 @@ export default function CreativeProcess() {
         );
 
       // Initialize GSDevTools
-      GSDevTools.create({
+      const devTools = GSDevTools.create({
         animation: tl.current,
         container: "#demo",
         timeScale: 1,
@@ -47,6 +47,7 @@ export default function CreativeProcess() {
       // Cleanup function
       return () => {
         tl.current?.kill();
+        devTools.kill();
       };
     },
     { scope: "#demo" },
