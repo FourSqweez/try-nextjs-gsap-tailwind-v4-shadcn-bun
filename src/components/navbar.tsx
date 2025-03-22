@@ -21,6 +21,14 @@ const routes = [
     name: "Basic Timeline",
     href: "/basic-timeline",
   },
+  {
+    name: "Hover Effect",
+    href: "/hover-effect",
+  },
+  {
+    name: "Creative Process",
+    href: "/creative-process",
+  },
 ];
 export default function Navbar() {
   return (
