@@ -37,6 +37,10 @@ const routes = [
     name: "Split Text",
     href: "/split-text",
   },
+  {
+    name: "Keyframe",
+    href: "/keyframe",
+  },
 ];
 export default function Navbar() {
   return (
@@ -47,7 +51,7 @@ export default function Navbar() {
       >
         Gsap trying
       </Link>
-      <div className="text-kitty-dark mt-4 flex h-fit w-fit gap-4">
+      <div className="text-kitty-dark mt-4 flex h-fit w-fit flex-wrap gap-4">
         {routes.map((route) => (
           <Link
             className="cursor-pointer bg-orange-300 px-4 py-2"
