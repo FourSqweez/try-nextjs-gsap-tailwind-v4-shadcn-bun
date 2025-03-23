@@ -3,15 +3,16 @@ import BasicSVG from "@/components/svgs/BasicSVG";
 import { Button } from "@/components/ui/button";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import MotionPathPlugin from "gsap-trial/MotionPathPlugin";
-import { useRef, useState } from "react";
+import { MotionPathPlugin } from "gsap-trial/all";
+import { ChangeEvent, useRef, useState } from "react";
 
 gsap.registerPlugin(MotionPathPlugin, useGSAP);
 
 export default function Page() {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<GSAPAnimation>(null);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   const { contextSafe } = useGSAP(
     () => {
@@ -22,10 +23,16 @@ export default function Page() {
           path: "#motionpath",
           align: "#herman",
         },
+        onUpdate: animationUpdate,
         onComplete: () => {
           setIsPlaying(false);
         },
       });
+
+      return () => {
+        setIsPlaying(true);
+        animationRef.current?.kill();
+      };
     },
     { scope: wrapperRef },
   );
@@ -38,6 +45,19 @@ export default function Page() {
     setIsPlaying((prev) => !prev);
   });
 
+  const animationUpdate = contextSafe(() => {
+    setProgress(animationRef.current?.progress() ?? 0);
+  });
+
+  const handleProgressChange = contextSafe(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (isPlaying) {
+        setIsPlaying(false);
+      }
+      animationRef.current?.progress(Number(e.target.value)).pause();
+    },
+  );
+
   return (
     <div
       ref={wrapperRef}
@@ -45,7 +65,22 @@ export default function Page() {
     >
       <BasicSVG />
 
-      <Button onClick={togglePlay}>{isPlaying ? "Pause" : "Play"}</Button>
+      <div className="flex w-full items-center gap-4 px-4">
+        <Button onClick={togglePlay}>{isPlaying ? "Pause" : "Play"}</Button>
+        <input
+          className="w-full"
+          id="progressSlider"
+          type="range"
+          min="0"
+          max="1"
+          value={progress}
+          step="0.001"
+          onChange={handleProgressChange}
+        />
+        <div id="time" className="min-w-[80px] text-center text-4xl text-white">
+          {animationRef.current?.progress().toFixed(2)}
+        </div>
+      </div>
     </div>
   );
 }
