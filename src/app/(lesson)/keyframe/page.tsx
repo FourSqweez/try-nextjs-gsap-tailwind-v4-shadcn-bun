@@ -11,43 +11,47 @@ gsap.registerPlugin(GSDevTools);
 
 export default function Page() {
   const tl = useRef<gsap.core.Timeline | null>(null);
+  const main = useRef<HTMLDivElement | null>(null);
 
-  useGSAP(() => {
-    gsap.set(".demo", { autoAlpha: 1 });
+  const { contextSafe } = useGSAP(
+    () => {
+      gsap.set(".demo", { autoAlpha: 1 });
 
-    tl.current = gsap.timeline({
-      repeat: 0,
-    });
+      tl.current = gsap.timeline({
+        repeat: 0,
+      });
 
-    tl.current.from("h1", { x: 200, opacity: 0, duration: 1 }).to(
-      ".slime",
-      {
-        keyframes: {
-          "25%": { y: 0 },
-          "50%": { y: -300, ease: "sine" },
-          "75%": { y: 0, ease: "sine.in" },
-          "100%": { x: 800, ease: "none" },
+      tl.current.from("h1", { x: 200, opacity: 0, duration: 1 }).to(
+        ".slime",
+        {
+          keyframes: {
+            "25%": { y: 0 },
+            "50%": { y: -300, ease: "sine" },
+            "75%": { y: 0, ease: "sine.in" },
+            "100%": { x: 800, ease: "none" },
+          },
+          duration: 2,
+          stagger: 0.4,
         },
-        duration: 2,
-        stagger: 0.4,
-      },
-      "<+0.5",
-    );
+        "<+0.5",
+      );
 
-    const devTools = GSDevTools.create({
-      animation: tl.current,
-      loop: false,
-    });
+      const devTools = GSDevTools.create({
+        animation: tl.current,
+        loop: false,
+      });
 
-    return () => {
-      tl.current?.kill();
-      devTools.kill();
-    };
-  });
+      return () => {
+        tl.current?.kill();
+        devTools.kill();
+      };
+    },
+    { scope: main },
+  );
 
-  const handlePlay = () => {
+  const handlePlay = contextSafe(() => {
     tl.current?.restart();
-  };
+  });
 
   return (
     <div className="main relative flex h-screen w-full flex-col items-center justify-center">
