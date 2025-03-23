@@ -11,6 +11,7 @@ export default function Page() {
   const herman = useRef<HTMLImageElement | null>(null);
   const hole = useRef<HTMLDivElement | null>(null);
   const demo = useRef<HTMLDivElement | null>(null);
+  const shadow = useRef<HTMLDivElement | null>(null);
 
   gsap.config({
     trialWarn: false,
@@ -38,7 +39,9 @@ export default function Page() {
           repeat: 1,
           yoyo: true,
           duration: 0.1,
-        });
+        })
+        .to(shadow.current, { opacity: 1, duration: 0.2 }, 0.7)
+        .to(shadow.current, { scale: 0.7, ease: "power1.in" }, ">");
 
       const devTools = GSDevTools.create({
         animation: tl,
@@ -60,6 +63,14 @@ export default function Page() {
         ref={demo}
         className="demo relative size-[400px] border-[1px] border-solid border-gray-500 bg-[#d6deff]"
       >
+        <div
+          ref={shadow}
+          className="absolute top-[290px] left-1/2 h-[20px] w-[150px] -translate-x-1/2 bg-no-repeat opacity-0"
+          style={{
+            background:
+              "radial-gradient(rgb(100, 100, 100, 0.6), rgb(0, 0, 0, 0) 75%)",
+          }}
+        />
         <div
           ref={hole}
           className="hole absolute top-[290px] left-1/2 h-[20px] w-[150px] -translate-x-1/2 rounded-[50%] bg-black"
