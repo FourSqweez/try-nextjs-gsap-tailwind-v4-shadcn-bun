@@ -45,6 +45,10 @@ const routes = [
     name: "Hole Jumper",
     href: "/hole-jumper",
   },
+  {
+    name: "Basic SVG",
+    href: "/basic-svg",
+  },
 ];
 export default function Navbar() {
   return (
