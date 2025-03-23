@@ -41,6 +41,10 @@ const routes = [
     name: "Keyframe",
     href: "/keyframe",
   },
+  {
+    name: "Hole Jumper",
+    href: "/hole-jumper",
+  },
 ];
 export default function Navbar() {
   return (
