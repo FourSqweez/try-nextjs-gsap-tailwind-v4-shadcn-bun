@@ -1,6 +1,18 @@
+import { checkpoints } from "@/app/(lesson)/(animate-svg)/basic-svg/page";
 import * as React from "react";
 
-export const BasicSVG = (props: React.SVGProps<SVGSVGElement>) => (
+type ClickHandlers = {
+  [key in keyof typeof checkpoints]: () => void;
+};
+
+type Props = React.SVGProps<SVGSVGElement> & {
+  onPlaceClick?: ClickHandlers;
+};
+
+export const BasicSVG = ({
+  onPlaceClick = {} as ClickHandlers,
+  ...props
+}: Props) => (
   <svg
     id="Layer_1"
     xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +34,7 @@ export const BasicSVG = (props: React.SVGProps<SVGSVGElement>) => (
       className="st1"
       d="M55.9,166.8c0,0,192,99,277,34s126-117,220-118s111,74,156,84"
     />
-    <g id="school">
+    <g id="school" onClick={onPlaceClick.school} style={{ cursor: "pointer" }}>
       <text
         transform="matrix(1 0 0 1 691.9189 284.5947)"
         className="st2 st3 st4"
@@ -41,7 +53,11 @@ export const BasicSVG = (props: React.SVGProps<SVGSVGElement>) => (
       </g>
       <rect x={664} y={204} className="st6" width={100} height={82} />
     </g>
-    <g id="dogpark">
+    <g
+      id="dogpark"
+      onClick={onPlaceClick.dogpark}
+      style={{ cursor: "pointer" }}
+    >
       <text
         transform="matrix(1 0 0 1 657.9189 81.5947)"
         className="st2 st3 st4"
@@ -60,7 +76,7 @@ export const BasicSVG = (props: React.SVGProps<SVGSVGElement>) => (
       </g>
       <rect x={646} y={4} className="st6" width={82} height={82} />
     </g>
-    <g id="candy">
+    <g id="candy" onClick={onPlaceClick.candy} style={{ cursor: "pointer" }}>
       <text
         transform="matrix(1 0 0 1 372.9189 253.5947)"
         className="st2 st3 st4"
@@ -79,7 +95,7 @@ export const BasicSVG = (props: React.SVGProps<SVGSVGElement>) => (
       </g>
       <rect x={370} y={182} className="st6" width={95} height={82} />
     </g>
-    <g id="home">
+    <g id="home" onClick={onPlaceClick.home} style={{ cursor: "pointer" }}>
       <text
         transform="matrix(1 0 0 1 64.9189 118.5947)"
         className="st2 st3 st4"

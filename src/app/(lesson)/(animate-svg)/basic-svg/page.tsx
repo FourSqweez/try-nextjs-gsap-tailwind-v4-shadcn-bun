@@ -8,6 +8,13 @@ import { ChangeEvent, useRef, useState } from "react";
 
 gsap.registerPlugin(MotionPathPlugin, useGSAP);
 
+export const checkpoints = {
+  home: 0,
+  candy: 0.5,
+  dogpark: 0.9,
+  school: 1,
+};
+
 export default function Page() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<gsap.core.Tween | null>(null);
@@ -58,12 +65,30 @@ export default function Page() {
     },
   );
 
+  const handleTravelTo = contextSafe((place: keyof typeof checkpoints) => {
+    const progress = checkpoints[place];
+    animationRef.current?.pause();
+    setIsPlaying(false);
+
+    gsap.to(animationRef.current, {
+      duration: 1,
+      progress: progress,
+    });
+  });
+
   return (
     <div
       ref={wrapperRef}
       className="flex h-screen w-full flex-col items-center justify-center gap-4"
     >
-      <BasicSVG />
+      <BasicSVG
+        onPlaceClick={{
+          home: () => handleTravelTo("home"),
+          candy: () => handleTravelTo("candy"),
+          dogpark: () => handleTravelTo("dogpark"),
+          school: () => handleTravelTo("school"),
+        }}
+      />
 
       <div className="flex w-full items-center gap-4 px-4">
         <Button onClick={togglePlay}>{isPlaying ? "Pause" : "Play"}</Button>
