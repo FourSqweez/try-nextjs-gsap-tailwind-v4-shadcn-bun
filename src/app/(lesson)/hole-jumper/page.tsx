@@ -21,7 +21,9 @@ export default function Page() {
   useGSAP(
     () => {
       const tl = gsap.timeline({
-        repeat: 0,
+        repeat: 1,
+        yoyo: true,
+        repeatDelay: 0.5,
       });
 
       tl.from(hole.current, { scale: 0, yoyo: true, repeat: 1 })
@@ -31,7 +33,7 @@ export default function Page() {
           { y: -175, scaleY: 1 },
           0.2,
         )
-        .to(herman.current, { y: 0, ease: "power1.in" }, ">")
+        .to(herman.current, { y: -4, ease: "power1.in" }, ">")
         .to(herman.current, {
           scaleY: 0.8,
           scaleX: 1.3,
@@ -49,12 +51,14 @@ export default function Page() {
       });
 
       return () => {
-        tl.restart();
         tl.kill();
         devTools.kill();
+        gsap.set([hole.current, herman.current, shadow.current], {
+          clearProps: "all",
+        });
       };
     },
-    { scope: demo, revertOnUpdate: true },
+    { scope: demo },
   );
 
   return (
@@ -65,18 +69,14 @@ export default function Page() {
       >
         <div
           ref={shadow}
-          className="absolute top-[290px] left-1/2 h-[20px] w-[150px] -translate-x-1/2 bg-no-repeat opacity-0"
-          style={{
-            background:
-              "radial-gradient(rgb(100, 100, 100, 0.6), rgb(0, 0, 0, 0) 75%)",
-          }}
+          className="absolute top-[290px] left-1/2 h-[20px] w-[150px] -translate-x-1/2 bg-radial bg-no-repeat opacity-0"
         />
         <div
           ref={hole}
           className="hole absolute top-[290px] left-1/2 h-[20px] w-[150px] -translate-x-1/2 rounded-[50%] bg-black"
         />
 
-        <div className="hermanWrapper relative h-[300px] w-full overflow-hidden">
+        <div className="hermanWrapper relative h-[305px] w-full overflow-hidden rounded-[50%]">
           <img
             ref={herman}
             className="herman absolute bottom-0 left-1/2 z-10 w-[100px] -translate-x-1/2"
