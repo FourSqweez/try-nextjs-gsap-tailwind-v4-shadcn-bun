@@ -18,6 +18,7 @@ export const checkpoints = {
 export default function Page() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<gsap.core.Tween | null>(null);
+  const moveTweenRef = useRef<gsap.core.Tween | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
 
@@ -45,10 +46,16 @@ export default function Page() {
   );
 
   const togglePlay = contextSafe(() => {
-    animationRef.current?.paused(!animationRef.current?.paused());
-    if (animationRef.current?.progress() === 1) {
-      animationRef.current.restart();
+    const anim = animationRef.current;
+    const travel = moveTweenRef.current;
+
+    if (travel) {
+      travel.paused(!travel.paused());
+    } else if (anim) {
+      if (anim.progress() === 1) anim.restart();
+      else anim.paused(!anim.paused());
     }
+
     setIsPlaying((prev) => !prev);
   });
 
@@ -66,13 +73,19 @@ export default function Page() {
   );
 
   const handleTravelTo = contextSafe((place: keyof typeof checkpoints) => {
+    moveTweenRef.current?.kill();
     const progress = checkpoints[place];
     animationRef.current?.pause();
-    setIsPlaying(false);
 
-    gsap.to(animationRef.current, {
-      duration: 1,
+    moveTweenRef.current = gsap.to(animationRef.current, {
+      duration: 6,
       progress: progress,
+      onStart: () => setIsPlaying(true),
+      onUpdate: animationUpdate,
+      onComplete: () => {
+        setIsPlaying(false);
+        moveTweenRef.current = null;
+      },
     });
   });
 
